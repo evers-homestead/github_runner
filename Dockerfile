@@ -2,7 +2,6 @@ ARG token
 
 FROM ubuntu:latest
 
-
 RUN apt update
 RUN apt install -y curl perl aspnetcore-runtime-6.0
 
@@ -17,6 +16,6 @@ RUN adduser github --disabled-password
 RUN chown -R github .
 USER github
 
-RUN ./config.sh --url https://github.com/evers-homestead --token ${token}
+RUN ./config.sh --url https://github.com/evers-homestead --token ABXBRUXBT6W23XSVQXJTV23EB7YGG
 
 ENTRYPOINT [ "/bin/sh", "-c", "./run.sh" ]
