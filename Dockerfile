@@ -1,6 +1,6 @@
 ARG token
 
-FROM mcr.microsoft.com/dotnet/aspnet:7.0.3-alpine3.17-amd64
+FROM ubuntu
 
 
 RUN apt update
