@@ -2,8 +2,9 @@ ARG token
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0.3-alpine3.17-amd64
 
-RUN apk update
-RUN apk add curl bash
+
+RUN apt update
+RUN apt install -y curl perl aspnetcore-runtime-6.0
 
 RUN mkdir /actions-runner
 WORKDIR /actions-runner
