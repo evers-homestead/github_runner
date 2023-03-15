@@ -30,4 +30,4 @@ jobs:
           echo "Dockerhub user: ${DOCKERHUB_USER}"
           docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PWD
           docker build -t $DOCKERHUB_USER/github_runner --platform linux/x86_64 .
-          docker push $DOCKERHUB_USER/dns_beacon
+          docker push $DOCKERHUB_USER/github_runner
