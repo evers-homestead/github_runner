@@ -1,0 +1,33 @@
+name: "Publish container image and helm chart"
+
+# triggers
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  image_build_publish:
+    name: "Build and publish image to Dockerhub"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: "Docker Build and Publish"
+        env:
+          DOCKERHUB_USER: ${{ vars.DOCKERHUB_USER }}
+          DOCKERHUB_PWD: ${{ secrets.DOCKERHUB_PWD }}
+        run: |
+          echo "Working Directory"
+          pwd
+          echo "Directory Contents"
+          ls -alr
+          echo "Dockerhub user: ${DOCKERHUB_USER}"
+          docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PWD
+          docker build -t $DOCKERHUB_USER/github_runner --platform linux/x86_64 .
+          docker push $DOCKERHUB_USER/dns_beacon
